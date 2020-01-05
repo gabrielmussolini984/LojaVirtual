@@ -5,9 +5,18 @@ const handlebars = require('express-handlebars');
 //App
 const app = express();
 
+
+// Handlebars
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', handlebars());
+app.set('view engine', 'handlebars');
+
+// Public
+app.use(express.static(path.join(__dirname,'public')));
+
 app.get('/', (req,res)=>{
-  res.send('Shop')
-})
+  res.send('Shop ')
+});
 
 
 
