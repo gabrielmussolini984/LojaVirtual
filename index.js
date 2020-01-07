@@ -1,6 +1,7 @@
 // Imports
 const express = require('express');
 const handlebars = require('express-handlebars');
+const path = require('path');
 
 //App
 const app = express();
@@ -15,7 +16,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname,'public')));
 
 app.get('/', (req,res)=>{
-  res.send('Shop ')
+  res.render('layouts/main')
 });
 
 
