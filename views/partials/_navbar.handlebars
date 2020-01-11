@@ -38,9 +38,9 @@
 				<!-- menu -->
 				<ul class="main-menu">
 					<li><a href="#">Inicio</a></li>
-					<li><a href="#">Categoria 1</a></li>
-					<li><a href="#">Categoria 2</a></li>
-					<li><a href="#">Categoria 3 <span class="new">New</span></a></li>
+					{{#each categorias}}
+					<li><a href="#">{{categoria}}</a></li>
+					{{/each}}
 					<li><a href="#">Categoria 4</a>
 						<ul class="sub-menu">
 							<li><a href="#">Sub Categoria 1</a></li>
