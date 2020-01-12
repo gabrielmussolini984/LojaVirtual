@@ -46,6 +46,12 @@ app.get('/categoria/:id/:slug', async(req,res)=>{
   const produtos = await produtoModels.getProdutosPorCategoriasId(db)(req.params.id);
   res.render('categoria',{categorias,estaCategoria: categoria[0],produtos});
 })
+app.get('/produto/:id', async(req,res)=>{
+  const categorias = await categoriaModels.getCategorias(db)();
+  const produto = await produtoModels.getProdutoPorId(db)(req.params.id);
+  res.send(produto[0]);
+
+})
 
 //Port Config and Server
 const port = process.env.PORT || 3000;

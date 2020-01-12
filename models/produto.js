@@ -8,7 +8,14 @@ const getProdutosPorCategoriasId = (db)=> async (id)=>{
   });
   return produtos;
 }
+const getProdutoPorId = (db)=> async (id)=>{
+  const produto = await db('produtos').select('*').where('id',id);
+  console.log(produto)
+  return produto;
+}
+
 
 module.exports = {
-  getProdutosPorCategoriasId
+  getProdutosPorCategoriasId,
+  getProdutoPorId
 }
