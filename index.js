@@ -33,10 +33,8 @@ app.use(express.static(path.join(__dirname,'public')));
 //app.use(express.static(__dirname + '/public'));
 
 
-
 app.get('/', async(req,res)=>{
   const categorias = await categoriaModels.getCategorias(db)();
-  console.log(categorias)
   res.render('home',{categorias});
 });
 
@@ -46,11 +44,11 @@ app.get('/categoria/:id/:slug', async(req,res)=>{
   const produtos = await produtoModels.getProdutosPorCategoriasId(db)(req.params.id);
   res.render('categoria',{categorias,estaCategoria: categoria[0],produtos});
 })
-app.get('/produto/:id', async(req,res)=>{
+app.get('/produto/:id/:slug', async(req,res)=>{
+  const categoria = await categoriaModels.getCategoriaPorIdProduto(db)(req.params.id);
   const categorias = await categoriaModels.getCategorias(db)();
   const produto = await produtoModels.getProdutoPorId(db)(req.params.id);
-  res.send(produto[0]);
-
+  res.render('produto-detalhe', {produto: produto[0], categorias, estaCategoria: categoria[0] } )
 })
 
 //Port Config and Server

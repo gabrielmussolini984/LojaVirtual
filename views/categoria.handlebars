@@ -4,7 +4,7 @@
 		<h4>{{estaCategoria.categoria}}</h4>
 		<div class="site-pagination">
 			<a href="/">Home</a> /
-			<a href="/categoria/{{estaCategoria.id}}">{{estaCategoria.categoria}}</a>
+			<a href="/categoria/{{estaCategoria.id}}/{{estaCategoria.slug}}">{{estaCategoria.categoria}}</a>
 		</div>
 	</div>
 </div>
@@ -127,7 +127,7 @@
 								</a>
 								<div class="pi-links">
 									<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-									<a href="/produto/{{id}}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+									<a href="/produto/{{id}}/{{slug}}" class="wishlist-btn"><i class="flaticon-heart"></i></a>
 								</div>
 							</div>
 							<div class="pi-text">
