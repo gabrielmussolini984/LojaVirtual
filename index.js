@@ -2,7 +2,9 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 const path = require('path');
-const slug = require('./utils/slug')
+
+const categoriaModels = require('./models/categoria');
+const produtoModels = require('./models/produto');
 
 // DB
 const db = require('knex')({
@@ -30,25 +32,18 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname,'public')));
 //app.use(express.static(__dirname + '/public'));
 
+
+
 app.get('/', async(req,res)=>{
-  const categorias = await db('categorias').select('*');
-  const categoriasComSlug = categorias.map((categoria)=>{
-    const novaCategoria = {...categoria,slug: slug(categoria.categoria)};
-    return novaCategoria
-  })
-  res.render('home',{categorias: categoriasComSlug});
+  const categorias = await categoriaModels.getCategorias(db)();
+  console.log(categorias)
+  res.render('home',{categorias});
 });
 
-app.get('/categoria/:id', async(req,res)=>{
-  const categoria = await db('categorias').where({id: req.params.id}).select('*');
-  const categorias = await db('categorias').select('*');
-  const produtos = await db('produtos').select('*').where('id', function(){
-    this
-      .select('categorias_produtos.produto_id')
-      .from('categorias_produtos')
-      .whereRaw('categorias_produtos.produto_id = produtos.id')
-      .where('categoria_id', req.params.id);
-  })
+app.get('/categoria/:id/:slug', async(req,res)=>{
+  const categoria = await categoriaModels.getCategoriaPorId(db)(req.params.id);
+  const categorias = await categoriaModels.getCategorias(db)();
+  const produtos = await produtoModels.getProdutosPorCategoriasId(db)(req.params.id);
   res.render('categoria',{categorias,estaCategoria: categoria[0],produtos});
 })
 
