@@ -15,7 +15,7 @@ body {
 	height: 100%;
 	font-family: 'Josefin Sans', sans-serif;
 	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
+	/*font-smoothing: antialiased;*/
 }
 
 h1,
@@ -560,8 +560,8 @@ ol {
 	position: absolute;
 	right: 0;
 	top: 226px;
-	width: 162px;
-	height: 162px;
+	width: 200px;
+	height: 200px;
 	border-radius: 50%;
 	background: #f51167;
 	text-align: center;
@@ -889,9 +889,11 @@ ol {
 	top: 20px;
 	opacity: 0;
 }
-
+.wishlist-btn:hover {
+	color: red;
+}
 .product-item .pi-links a.add-card:hover {
-	width: 148px;
+	width: 130px;
 	padding: 8px 18px 0;
 	text-align: left;
 }
