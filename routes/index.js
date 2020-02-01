@@ -6,7 +6,7 @@ const init = db => {
 
   router.use('/categoria',categoriasRouter(db));
   router.use('/produto',produtosRouter(db));
-  router.use('/',homeRouter());
+  router.use('/',homeRouter(db));
 
   return router;
 }

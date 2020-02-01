@@ -6,6 +6,9 @@ const db = require('knex')({
     user: 'root',
     password: '',
     database: 'shop'
+  },
+  migrations: {
+    tableName: 'migrations'
   }
 });
 db.on('query', query =>{
